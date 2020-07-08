@@ -190,21 +190,7 @@ class BlogCrudController extends CI_Controller {
 		$id = $this->input->post('id');
 		$imageName = $this->input->post('picture');
 		$imgpath = "assets/img/";
-		if($id){
-		$link_array = explode('/',$imageName);
-		$img = end($link_array);
-		$files = scandir($imgpath);
-			foreach ($files as $key => $value) {
-			if(file_exists($imgpath.$value)){
-				if( $value == $img){
-					unlink($imgpath.$value);
-				//   echo $value . " ".$img;
-					}
-			
-				}
-			
-			}
-		}
+		delete_previous_image($imgpath, $imageName);
 
 		$status = $this->bmodel->delete('blogs',$id);
 		

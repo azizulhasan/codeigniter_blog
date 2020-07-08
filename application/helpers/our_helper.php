@@ -96,4 +96,24 @@ function textFile($field, $id){
      return $retval;
    }
 
-  //  "<a href='{$link}' >'{$readmore}'</a>"
+
+   ////////////////////////////////////////////
+   // Delete Prious user Image During deleting user
+   ////////////////////////////////////////////
+   function delete_previous_image($imgpath,$imageName ){
+		$link_array = explode('/',$imageName);
+		$img = end($link_array);
+    $files = scandir($imgpath);
+			foreach ($files as $key => $value) {
+
+        // echo $imgpath.$value."<br/>";
+			if(file_exists($imgpath.$value)){
+				if( $value == $img){
+          
+          unlink($imgpath.$value);
+          
+					}
+				}
+			
+			}
+	}

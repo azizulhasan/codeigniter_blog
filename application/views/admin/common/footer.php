@@ -30,8 +30,8 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
   <script src="<?php echo base_url("admin/assets/vendor/jquery-easing/")?>/jquery.easing.min.js"></script>
   <script src="<?php echo base_url("admin/assets/js/")?>/ruang-admin.min.js"></script>
-  <script src="<?php echo base_url("admin/assets/vendor/chart.js")?>/Chart.min.js"></script>
-  <script src="<?php echo base_url("admin/assets/js/demo/")?>/chart-area-demo.js"></script>  
+  <!-- <script src="<?php echo base_url("admin/assets/vendor/chart.js")?>/Chart.min.js"></script>
+  <script src="<?php echo base_url("admin/assets/js/demo/")?>/chart-area-demo.js"></script>   -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
    <!-- <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script> -->

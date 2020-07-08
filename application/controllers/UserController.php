@@ -135,11 +135,7 @@ class UserController extends CI_Controller
 		$id = $this->input->post('id');
 		$imageName = $this->input->post('picture');
 		$imgpath = "admin/assets/img/users/";
-		if($id){
-			$this->delete_previous_image($imageName, $imgpath);
-		}
-
-
+		delete_previous_image($imgpath, $imageName);
 		$status = $this->bmodel->delete('users',$id);
 		if($status){
 			echo json_encode(array("status" => TRUE));
@@ -148,21 +144,7 @@ class UserController extends CI_Controller
 		 }
 	
 	}	
-	public function delete_previous_image($imgpath,$imageName ){
-		$link_array = explode('/',$imageName);
-		$img = end($link_array);
-		$files = scandir($imgpath);
-			foreach ($files as $key => $value) {
-			if(file_exists($imgpath.$value)){
-				if( $value == $img){
-					unlink($imgpath.$value);
-				//   echo $value . " ".$img;
-					}
-			
-				}
-			
-			}
-	}
+	
 	
 	
 

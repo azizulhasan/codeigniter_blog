@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class CategoryController extends CI_Controller {
+class TagController extends CI_Controller {
 
 
 	public function __construct(){
@@ -18,7 +18,7 @@ class CategoryController extends CI_Controller {
 	{
 
 		// $data['cssdata']=[
-        //     '0'=> 'category.css',
+        //     '0'=> 'tag.css',
             
         // ];
         // $data['livejs']=[
@@ -31,7 +31,7 @@ class CategoryController extends CI_Controller {
 	{
 
         $data['jsdata']=[
-            '0'=> 'category.js',
+            '0'=> 'tag.js',
             
         ];
         // $data['livejs']=[
@@ -43,11 +43,12 @@ class CategoryController extends CI_Controller {
 
 
 
-    public function category_management()
+    public function tag_management()
     {
         $this->header();
 		$data['categories']=$this->bmodel->view("*", 'category' , '', 'id DESC' );
-		echo $this->load->view("admin/category_manage", $data,  true);
+		$data['tags']=$this->db->query("select t.* , c.category_name category_name from tag t, category c where c.id = t.category_id");
+		echo $this->load->view("admin/tag_manage", $data,  true);
 		$this->footer();
     }
 
@@ -58,23 +59,28 @@ class CategoryController extends CI_Controller {
 		$id = $this->input->post('id');
 		
 		$data = array(
-			'category_name' => $this->input->post('category_name')
+			'tag_name' => $this->input->post('tag_name'),
+			'category_id' => $this->input->post('category_id')
         );
         $status = false;
 		if($id){
 			$data = [
 				'id'=> $id,
-				'category_name'=> $this->input->post('category_name')
+				'tag_name'=> $this->input->post('tag_name'),
+				'category_id'=> $this->input->post('category_id')
 			];
-			$this->db->replace('category', $data);
-			$data = $this->bmodel->view('*', 'category', ['id'=> $id]);
+			$this->db->replace('tag', $data);
+			$data=$this->db->query("select t.* , c.category_name category_name from tag t, category c where c.id = t.category_id and t.id='".$id."'");
+			$data =$data->result_array();
             if($data){
                 $status = true;
             }
 		}
 		else{
-		$id = $this->bmodel->InsertData('category', $data);
-        $data = $this->bmodel->view("*" , 'category', ['id'=>$id]);
+		$last_id = $this->bmodel->InsertData('tag', $data);
+		$data=$this->db->query("select t.* , c.category_name category_name from tag t, category c where c.id = t.category_id and t.id='".$last_id."'");
+
+		$data =$data->result_array();
             if($data){
                 $status = true;
             }
@@ -87,7 +93,7 @@ class CategoryController extends CI_Controller {
 	{
 		$id = $this->input->post('id');
 		
-		$data = $this->bmodel->view('*', 'category', ['id'=> $id]);
+		$data = $this->bmodel->view('*', 'tag', ['id'=> $id]);
 		if($data){
 		$arr = array('success' => true, 'data' => $data);
 		}else{
@@ -100,7 +106,7 @@ class CategoryController extends CI_Controller {
 
     public function delete()
 	{	$id = $this->input->post('id');
-		 $status = $this->bmodel->delete('category',$id);
+		 $status = $this->bmodel->delete('tag',$id);
 		
 		 if($status){
 			echo json_encode(array("status" => TRUE));
@@ -109,8 +115,5 @@ class CategoryController extends CI_Controller {
 		 }
 		
 	}
-
-	
-    
 
 }

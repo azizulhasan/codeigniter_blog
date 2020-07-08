@@ -100,19 +100,6 @@ class PositionController extends CI_Controller
 		
 	}
 
-
-
-
-
-
-
-
-
-
-
-
-    
-
 	
     public function create_role()
     {

@@ -94,6 +94,25 @@ $route['admin/user/get_by_id'] = 'UserController/get_by_id';
 $route['admin/user/delete'] = 'UserController/delete';
 
 
+// category management
+$route['admin/category_management'] = 'CategoryController/category_management';
+$route['admin/category/store'] = 'CategoryController/store';
+$route['admin/category/get_by_id'] = 'CategoryController/get_by_id';
+$route['admin/category/delete'] = 'CategoryController/delete';
+
+// sub_category management
+$route['admin/sub_category_management'] = 'SubCategoryController/sub_category_management';
+$route['admin/sub_category/store'] = 'SubCategoryController/store';
+$route['admin/sub_category/get_by_id'] = 'SubCategoryController/get_by_id';
+$route['admin/sub_category/delete'] = 'SubCategoryController/delete';
+
+// tag management
+$route['admin/tag_management'] = 'TagController/tag_management';
+$route['admin/tag/store'] = 'TagController/store';
+$route['admin/tag/get_by_id'] = 'TagController/get_by_id';
+$route['admin/tag/delete'] = 'TagController/delete';
+
+
 
 // position management
 $route['admin/position_management'] = 'PositionController/position_management';

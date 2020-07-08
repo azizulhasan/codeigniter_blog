@@ -106,11 +106,11 @@
 			success: function (res) {
 				if (res.data[0].email && res.data[0].type=='1') {
 					window.location.assign(
-						"http://localhost/idb/1252639/codeigniter/blog/admin/index"
+						"http://localhost/idb/1252639/codeigniter/codeigniter_blog/admin/index"
 					);
 				} else {
 					window.location.assign(
-						"http://localhost/idb/1252639/codeigniter/blog/admin/login"
+						"http://localhost/idb/1252639/codeigniter/codeigniter_blog/admin/login"
 					);
 				}
 			},

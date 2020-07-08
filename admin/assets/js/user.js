@@ -1,8 +1,6 @@
 $(document).ready(function () {
 	$("#admin_user").DataTable();
-
 	/*  When user click add user button */
-
 	$("#create-new-user").click(function () {
 		$("#btn-save").val("create-user");
 		$("#user_id").val("");
@@ -10,12 +8,9 @@ $(document).ready(function () {
 		$("#userCrudModal").html("Add New user");
 		$("#ajax-user-modal").modal("show");
 	});
-
 	/* When click edit user */
-
 	$("body").on("click", ".edit-user", function () {
 		var user_id = $(this).data("id");
-
 		$.ajax({
 			type: "Post",
 			url: $("meta[name='url']").attr("content") + "admin/user/get_by_id",
@@ -55,7 +50,6 @@ $(document).ready(function () {
 			.children()
 			.find("img")
 			.attr("src");
-
 		if (confirm("Are You sure want to delete !")) {
 			$.ajax({
 				type: "POST",
@@ -68,6 +62,9 @@ $(document).ready(function () {
 				success: function (data) {
 					if (data.status == true) {
 						$("#user_id_" + user_id).remove();
+						alert("User Deleted Successfully");
+					} else {
+						alert("Something Went Wrong!");
 					}
 				},
 				error: function (data) {

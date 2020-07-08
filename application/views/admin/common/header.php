@@ -66,12 +66,12 @@
         BLOG ADMIN
       </div>
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBlog"
-          aria-expanded="true" aria-controls="collapseBlog">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#blogRole"
+          aria-expanded="true" aria-controls="blogRole">
           <i class="far fa-fw fa-window-maximize"></i>
           <span>Role Management</span>
         </a>
-        <div id="collapseBlog" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
+        <div id="blogRole" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
           <h6 class="collapse-header">Role</h6>
             <a class="collapse-item" href="<?php echo base_url("admin/user_management")?>">User Manage</a>
@@ -79,6 +79,23 @@
           </div>
         </div>
       </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#blogCategory"
+          aria-expanded="true" aria-controls="blogCategory">
+          <i class="far fa-fw fa-window-maximize"></i>
+          <span>Category Management</span>
+        </a>
+        <div id="blogCategory" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+          <h6 class="collapse-header">Category</h6>
+            <a class="collapse-item" href="<?php echo base_url("admin/category_management")?>">Category Manage</a>
+            <a class="collapse-item" href="<?php echo base_url("admin/sub_category_management")?>">SubCategory Manage</a>
+            <a class="collapse-item" href="<?php echo base_url("admin/tag_management")?>">Tag Manage</a>
+          </div>
+        </div>
+      </li>
+
       <br>
 
 
