@@ -1,0 +1,154 @@
+database:
+
+blog:
+====
+create table blogs(
+id int auto_increment primary key,
+    title varchar(255),
+    picture varchar(4),
+    category_id int,
+    tag_id int ,
+    created_at datetime,
+    updated_at datetime ,
+    FOREIGN KEY (tag_id) REFERENCES tag(id),
+    FOREIGN KEY (category_id) REFERENCES category(id)
+)
+
+browser, ip address, 
+
+ALTER TABLE blogs ADD(
+    created_by_id int ,
+FOREIGN KEY(created_by_id) REFERENCES users(id),
+    type tinyint(4)
+)
+ALTER TABLE blogs ADD(
+    description varchar(MAX),
+)
+ 
+
+ALTER TABLE blogs ADD(
+    subtitle varchar(500),
+    sub_category_id varchar(100),
+    blog_type tinyint(4),
+    paid_amount int(11)
+    )
+
+
+tag;
+=====
+create table tag(
+id int auto_increment primary key,
+    tag_name varchar(100)
+)
+ category :
+ =========
+create table category(
+id int auto_increment primary key,
+    category_name varchar(100)
+)
+ sub_category :
+ =============
+create table sub_category(
+id int auto_increment primary key,
+    sub_category_name varchar(100),
+    category_id int ,
+    FOREIGN KEY(category_id) REFERENCES category(id))
+
+
+comment:
+=======
+create table comment(
+id int auto_increment primary key,
+    blog_id int,
+    name varchar(100),
+    email varchar(100),
+    website varchar(255),
+    created_at datetime,
+    FOREIGN KEY(blog_id) REFERENCES blog(id) 
+    FOREIGN KEY(blog_id) REFERENCES blog(id) 
+)
+
+
+position_manage:
+=======
+create table position_manage(
+id int auto_increment primary key,
+    position_name varchar(100),
+   position_type tinyint(4)
+)
+
+
+LIKE:
+=======
+like (id, blog_id, user_id, created_at )
+
+
+
+
+DROP TABLE IF EXISTS `blog_comment`;
+
+CREATE TABLE `blog_comment` (
+  `comment_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `comment_text` text NOT NULL,
+  `comment_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `parent_id` int(10) unsigned NOT NULL,
+  `blog_id` int NOT NULL,
+  PRIMARY KEY (`comment_id`,`blog_id`),
+  KEY `fk_blog_comment_blog1_idx` (`blog_id`),
+  CONSTRAINT `fk_blog_comment_blog1` FOREIGN KEY (`blog_id`) REFERENCES `blogs` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+
+user:
+=====
+create table users(
+id int auto_increment primary key,
+    name varchar(100),
+    email varchar(100),
+    contact varchar (100),
+    picture varchar(4) null,
+    password varchar(100) null,
+    password_recovery varchar(100),
+    role_id int(10)   
+)
+
+role_manage
+id int auto_increment primary key,
+   role_type varchar(100)
+)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+INSERT INTO blog_comment (comment_id, comment_text, comment_date, parent_id, blog_id) VALUES
+ (11,'Test comment','2013-10-05 07:07:31',0,11),
+(12,'test reply','2013-10-05 07:13:06',1,12),
+(13,'test reply 2','2013-10-05 07:18:11',1,13),
+(14,'test reply 3','2013-10-05 07:20:33',2,14),
+(15,'Test comment','2013-10-05 10:17:20',0,11),
+(16,'reply','2013-10-05 10:19:28',5,12),
+(17,'erre','2013-10-05 10:20:57',5,12),
+(18,'trt','2013-10-05 10:21:39',6,11),
+(19,'ghgh','2013-10-05 10:24:55',8,15),
+(22,'Test Comment','0000-00-00 00:00:00',0,15),
+(24,'Test Reply','0000-00-00 00:00:00',10,15),
+(25,'Hello','2016-08-03 05:07:14',0,15),
+(26,'Hi','2016-08-03 05:07:32',12,13);

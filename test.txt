@@ -1,0 +1,4 @@
+subtitle, 
+sub_category_id
+blog_type
+paid_amount

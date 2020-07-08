@@ -1,0 +1,23 @@
+.related_tag p {
+	display: inline;
+}
+.related_tag a {
+	display: inline;
+}
+img.img_responsive {
+	height: 200px;
+	background-position: center;
+	background-size: cover;
+	width: 100%;
+	position: relative;
+}
+.add_content {
+	position: absolute;
+	font-size: 30px;
+	font-weight: 900;
+	color: rgb(255, 255, 255);
+	display: block;
+	z-index: 999;
+	top: 40%;
+	left: 17%;
+}
