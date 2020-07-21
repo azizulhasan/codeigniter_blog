@@ -28,14 +28,18 @@
   <article>
     <div class="container">
       <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-8 border border-1">
           
             <?php 
-            if(!file_exists(base_url()."assets/img/description/".$blog->id.".txt")){
+            if(!file_exists("assets/img/description/".$blog->id.".txt")){
                   $url = base_url()."assets/img/description/placeholder.txt";
+            }else if(filesize("assets/img/description/".$blog->id.".txt")<1){
+              $url = base_url()."assets/img/description/placeholder.txt";
             }else{
               $url = base_url()."assets/img/description/".$blog->id.".txt";
             }
+
+            
 
             echo  file_get_contents($url);
              ?>
@@ -45,7 +49,7 @@
              TAG
              ****************************** -->
               <div class="related_tag">
-                <p>tags: </p>
+                <p class="py-3 text-danger">tags: </p>
                 <?php if($tags):
                   foreach($tags as $tag): 
                   ?>
@@ -68,10 +72,13 @@
           <?php foreach($releted_post as $post):?>
           <div class="col-lg-3 col-md-4 ">
             <?php 
-            if(!file_exists(base_url().'assets/img/'.$blog->picture)){
+            if(!file_exists('assets/img/'.$post->picture)){
                   $image = base_url().'assets/img/placeholder.jpg';
+            }else if($post->picture==""){
+              $image = base_url().'assets/img/placeholder.jpg';
             }else{
-              $image = base_url().'assets/img/'.$blog->picture;
+              $image = base_url().'assets/img/'.$post->picture;
+              // echo $image;
             }
             ?>
             <a href="">
@@ -116,15 +123,15 @@
             <a href="" class="g-signin2  btn-google btn-block" data-onsuccess="onSignIn" id="login_google" data-theme="dark" >
               <i class="fab fa-google fa-fw"></i> Login with Google
             </a>
-            <fb:login-button 
+            <!-- <fb:login-button 
               scope="public_profile,email"
               onlogin="checkLoginState();">
-            </fb:login-button>
+            </fb:login-button> -->
             <div
               class="fb-like"
               data-share="true"
               data-width="450"
-              data-show-faces="true">
+              data-show-faces="true" id="face_book_share">
             </div>
             
              <!-- login with fb google end--> 
@@ -135,10 +142,10 @@
 
 
         </div>
-      <div class="col-md-4 ">
-        <form class="navbar-form" role="search" action="<?php echo base_url().'/search/search_keyword';?>"  method="post">
+      <div class="col-md-4 border border-1">
+        <form  id="search_form" class="navbar-form" role="search" action="<?php echo base_url().'/search/search_keyword';?>"  method="post">
           <div class="input-group">
-          <input type="text" class="form-control" placeholder="Search" name= "keyword" size="15px; ">
+          <input type="text" class="form-control py-2" placeholder="Search" name= "keyword"  ">
             <div class="input-group-btn">
             <button class="btn btn-primary" type="submit" value = "Search">search</button>
             </div>
@@ -146,7 +153,7 @@
         </form>
 
         <div class="col-12 px-0">
-        <h4>Category</h4>
+        <h5 class="pt-3">Category</h5>
           <?php if($categories):
             foreach($categories as $category): 
             ?>
@@ -162,58 +169,35 @@
           <button type="button" class="btn  btn-danger" data-toggle="modal" data-target="#subscribe_blog">subscribe</button>
         </div>
 
-        <div class="col-12 py-2 px-0">
-            <?php if($error = $this->session->flashdata('msg')){ ?>
-            <p style="color: green;"><strong>Success!</strong> <?php echo  $error; ?><p>
-            <?php } ?>
-            <!-- //End Flash message available here .............. -->
-          <form action="<?php echo base_url(); ?>email_send/send" method="post">
-            <input type="email" name="from" class="form-control" placeholder="Enter Email" required><br>
-            <?php 
-              $url =  current_url(); 
-              $link = $_SERVER['PHP_SELF'];
-              $link_array = explode('/',$url);
-              $postId = end($link_array);
-            ?>
-            
-            <input type="text" name="blog_id" value="<?php echo $postId?>" hidden>
-            
-            <button type="submit" class="btn btn-primary">subscribe</button>
-          </form>
-        </div>
+        <!--  -->
 
         <div class="col-12 px-0 py-2">
-        <h4>Subscribe with google or facebook</h4>
+        <h6 class="pt-3 ">Subscribe with google or facebook</h6>
               <!-- login with fb google -->
             <a href="" class="g-signin2  btn-google btn-block" data-onsuccess="onSignIn" id="login_google" data-theme="dark" >
               <i class="fab fa-google fa-fw"></i> Login with Google
             </a>
             <fb:login-button 
               scope="public_profile,email"
-              onlogin="checkLoginState();">
+              onlogin="checkLoginState();"  >
             </fb:login-button>
              <!-- login with fb google end--> 
         </div>
         <!-- add registration part -->
         <div class="col-12 px-0 py-4">
-          <h4>Register for Add</h4>
-          <a href="<?php echo base_url().'admin/register_add'?>">
+          <h4 class="text-center">Register for Add</h4>
+          <a href="<?php echo base_url().'blog/register_add'?>">
               <img class="img_responsive " src="<?php echo base_url().'assets/img/advertise.png'?>" alt="">
               <p class="add_content">Add To This Place</p>
           </a>
-          
         </div>
         <!-- add registration part end -->
-        
-      
       </div>
       </div>
     </div>
   </article>
-
   <hr>
 <!-- http://localhost/idb/1252639/codeigniter/blog/index.php/post/48  -->
-
   <!-- Modal -->
 <div class="modal fade" id="subscribe_blog" tabindex="-1" role="dialog" aria-labelledby="subscribe_blogLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -235,19 +219,9 @@
           </div>
           <button type="button" id="subscribe_form"  class="btn btn-primary">Subscribe</button>
       </form>
-       <!-- login with fb google -->
-            <a href="" class="g-signin2  btn-google btn-block" data-onsuccess="onSignIn" id="login_google" data-theme="dark" >
-              <i class="fab fa-google fa-fw"></i> Login with Google
-            </a>
-            <fb:login-button 
-              scope="public_profile,email"
-              onlogin="checkLoginState();">
-            </fb:login-button>
-             <!-- login with fb google end--> 
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        
       </div>
     </div>
   </div>
@@ -261,7 +235,10 @@
 	// login_with google
 	//////////////////////////////
 
-	function onSignIn(googleUser) {
+
+
+
+    function onSignIn(googleUser) {
 		//Useful data for your client-side scripts:
 		var profile = googleUser.getBasicProfile();
 
@@ -276,8 +253,13 @@
 		data.append("name", profile.getName());
 		data.append("email", profile.getEmail());
 		data.append("profileId", profile.getId());
-		data.append("type", "2");
+    data.append("type", "4");
+    
+    // console.log(profile.getName())
+    // console.log(profile.getEmail())
 
+
+   
 		$.ajax({
 			data: data,
 			url: $("meta[name='url']").attr("content") + "admin/check",
@@ -286,6 +268,8 @@
 			contentType: false,
 			dataType: "json",
 			success: function (res) {
+        console.log(res)
+
 				if (res.data[0].email) {
 					let login = `
           <span>${profile.getGivenName()}</span>
@@ -298,15 +282,12 @@
 			},
 			error: function (data) {
 				console.log("Error:", data);
-			},
+			}
 		});
   }
- 
-  
+      
 
 
-   
 
-
-	});
+	// });
    </script>

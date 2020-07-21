@@ -46,7 +46,7 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
-      <a class="navbar-brand" href="<?php echo base_url('')?>">Start Bootstrap</a>
+      <a class="navbar-brand" href="<?php echo base_url('')?>">Clean Blog</a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         Menu
         <i class="fas fa-bars"></i>
@@ -62,35 +62,54 @@
           <li class="nav-item">
             <a class="nav-link" href="<?php echo base_url('contact')?>">Contact</a>
           </li>
-          <!-- <li class="nav-item">
-            <a class="nav-link" href="<?php echo base_url('admin/login')?>">Login</a>
-          </li> -->
-          <?php if(isset($login_data)): ?>
+          
+          <?php if(isset($login_data)){ 
+
+
+
+            
+            
+            ?>
 
           <li class="nav-item dropdown"  id="login_nav">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
   
             <span><?php echo  $login_data[0]->name ?></span>
-          <img src="<?php echo  $login_data[0]->picture ?>" alt="" height='25' width='25'>
+
+            <img src="<?php echo base_url("assets/img/users/").$login_data[0]->picture ?>" alt="" height='25' width='25'>
+
 
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a href="<?php echo base_url().'dashboard/'.$login_data[0]->type?>" type="button" class="dropdown-item"  >Dashboard
+            <?php if($login_data[0]->type=="6"){?>
+              <a href="<?php echo base_url().'advertiser/'.$login_data[0]->type?>" type="button" class="dropdown-item"  >Dashboard
+              <div class="dropdown-divider"></div>
+              <?php
+             }else if($login_data[0]->type=="1"){?>
+
+              <a href="<?php echo base_url().'admin/index';?>" type="button" class="dropdown-item"  >Dashboard
+              <div class="dropdown-divider"></div>
+
+             <?php } ?>
 
             </a>
-              <div class="dropdown-divider"></div>
-            <?php 
-              $url =  current_url(); 
-              $link = $_SERVER['PHP_SELF'];
-              $link_array = explode('/',$url);
-              $postId = end($link_array);
-            ?>
+              
+           
+             
               <a href="<?php echo base_url().'logout'?>" type="button" class="dropdown-item"  id="front_logout">Log Out</a>
+             
+            
             </div>
           </li>
         
     
-         <?php endif;?>
+          <?php }else{
+            ?>
+            <li class="nav-item">
+            <a class="nav-link" href="<?php echo base_url('blog/login')?>">Login</a>
+          </li>
+            <?php 
+          }?>
 
 
           

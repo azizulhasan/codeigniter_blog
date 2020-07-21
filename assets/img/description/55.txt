@@ -1,4 +1,4 @@
-<p style="box-sizing: border-box; margin: 0px; padding-bottom: 10px; font-size: 18px; line-height: 26px; font-family: SolaimanLipi; text-align: justify; background-color: #ffffff;">সৃষ্টির সেরা জীব মানুষ। প্রাণী জগতের নিয়ন্ত্রণ মানুষের হাতে। বিবেক-বুদ্ধির জোরেই মানবজাতির এ শ্রেষ্ঠত্ব।</p>
+<p >সৃষ্টির সেরা জীব মানুষ। প্রাণী জগতের নিয়ন্ত্রণ মানুষের হাতে। বিবেক-বুদ্ধির জোরেই মানবজাতির এ শ্রেষ্ঠত্ব।</p>
 <div class="advertisement_inner  hidden-print" style="box-sizing: border-box; overflow: hidden; padding: 7px 0px 7px 7px; float: right; font-family: SolaimanLipi; font-size: 18px; text-align: justify; background-color: #ffffff;">
 <div id="jg_desktop_content_square" class="pg-ad" style="box-sizing: border-box;">
 <div id="google_ads_iframe_/21711891156/jg_desktop_content_square_0__container__" style="box-sizing: border-box; border: 0pt none; width: 300px; height: 250px;"></div>

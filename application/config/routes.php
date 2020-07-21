@@ -65,14 +65,24 @@ $route['post'] = 'blog/post';
 $route['contact'] = 'blog/contact';
 $route['search/search_keyword'] = 'blog/search_keyword';
 $route['category/(:num)'] = 'blog/category_post';
+$route['category/(:num)/(:num)'] = 'blog/category_post';
 $route['tag/(:num)'] = 'blog/tag_post';
+$route['tag/(:num)/(:num)'] = 'blog/tag_post';
 $route['subscribe/store'] = 'blog/user_subscriber';
 $route['email_send/send'] = 'blog/send';
+$route['blog/register_add'] = 'blog/register_add';
+$route['blog/register_confirm'] = 'blog/register_confirm';
+$route['blog/register_subscriber'] = 'blog/register_subscriber';
+
+$route['blog/login'] = 'LoginController/login';
+$route['blog/check'] = 'LoginController/check';
+
 // blog front managemetn
 
 
 // subscriber management  advertise management
-$route['dashboard/(:num)'] = 'DashboardController/index';
+$route['advertiser/(:num)'] = 'AdController/index';
+$route['advertiser/index'] = 'AdController/index';
 // $route['dashboard/index'] = 'DashboardController/index';
 
 
@@ -83,7 +93,7 @@ $route['admin/store'] = 'BlogCrudController/store';
 $route['admin/get_blog_by_id'] = 'BlogCrudController/get_blog_by_id';
 $route['admin/get_sub_category_by_id'] = 'BlogCrudController/get_sub_category';
 $route['admin/delete'] = 'BlogCrudController/delete';
-$route['admin/register_add'] = 'blog/register_add';
+
 // blog admin management
 
 
@@ -124,18 +134,18 @@ $route['admin/position/get_by_id'] = 'PositionController/get_by_id';
 
 
 
-// login and logout
-$route['logout'] = 'BlogCrudController/logout';
-$route['admin/logout'] = 'BlogCrudController/logout';
-$route['admin/register_confirm'] = 'BlogCrudController/register_confirm';
 
 
-$route['admin/login'] = 'logincontroller/login';
 
-$route['admin/check'] = 'logincontroller/check';
-$route['post/(:num)/admin/check'] = 'logincontroller/check';
+
+$route['admin/login'] = 'LoginController/login';
+
+$route['admin/check'] = 'LoginController/check';
+$route['post/(:num)/admin/check'] = 'LoginController/check';
 $route['register'] = 'blog/register';
 // login and logout
+// login and logout
+$route['logout'] = 'LoginController/logout';
 
 
 $route['image'] = 'ImageController';

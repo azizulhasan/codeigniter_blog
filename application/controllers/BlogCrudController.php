@@ -8,9 +8,9 @@ class BlogCrudController extends CI_Controller {
 
         parent::__construct();
 
-        $admin_type = $this->session->userdata("type");
-		if(!$admin_type=='1'){
-            return redirect( base_url("/"), "refresh" );
+		$admin_type = $this->session->userdata("type");
+		if($admin_type !='1'){
+			return redirect( base_url("/"), "refresh" );
 		}
 		
 
@@ -38,22 +38,7 @@ class BlogCrudController extends CI_Controller {
 		echo   $this->load->view('admin/common/footer',$data, true);
 	}
 
-	public function logout()
-	{
-		// if($this->uri->segment(1)=='post'){
-		// 	$this->session->unset_userdata(['id','name','type']);
-		// 	echo json_encode(array('status'=>1));
-		// 	// return redirect( base_url("post/".$this->uri->segment(2)), "refresh" );
-		// }elseif($this->session->userdata('id')=='4'||$this->session->userdata('id')=='3'){
-		// 	$this->session->unset_userdata(['id','name', 'type']);
-		// 	return redirect( base_url("/"), "refresh" );
-		// }
-		// else{
-			$this->session->unset_userdata(['id','name', 'type']);
-			return redirect( base_url("/"), "refresh" );
-		// }
-		
-	}
+	
 
 	
 

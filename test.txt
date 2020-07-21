@@ -1,4 +1,55 @@
-subtitle, 
-sub_category_id
-blog_type
-paid_amount
+220 smtp.gmail.com ESMTP 76sm15900372pfu.139 - gsmtp
+<br /><pre>hello: 250-smtp.gmail.com at your service, [199.188.206.50]
+250-SIZE 35882577
+250-8BITMIME
+250-AUTH LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+</pre>Failed to authenticate password. Error: 535-5.7.8 Username and Password not accepted. Learn more at
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials 76sm15900372pfu.139 - gsmtp
+<br />Unable to send email using PHP SMTP. Your server might not be configured to send mail using this method.<br /><pre>Date: Mon, 20 Jul 2020 02:50:21 -0400
+From: &lt;azizulhasan.cr@gmail.com&gt;
+Return-Path: &lt;azizulhasan.cr@gmail.com&gt;
+To: azizulhasan1995@gmail.com
+Subject: =?UTF-8?Q?subscriber?=
+Reply-To: &lt;azizulhasan.cr@gmail.com&gt;
+User-Agent: CodeIgniter
+X-Sender: azizulhasan.cr@gmail.com
+X-Mailer: CodeIgniter
+X-Priority: 3 (Normal)
+Message-ID: &lt;5f153ead652c4@gmail.com&gt;
+Mime-Version: 1.0
+
+
+Content-Type: multipart/alternative; boundary=&quot;B_ALT_5f153ead652d5&quot;
+
+This is a multi-part message in MIME format.
+Your email application may not support this format.
+
+--B_ALT_5f153ead652d5
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+this is testing purposewww.codingmantra.co.in
+
+
+--B_ALT_5f153ead652d5
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+=3C=21DOCTYPE=3E=3Chtml=3E=3Chead=3E=3C/head=3E=3Cbody=3E=3Ctable width=3D=
+=22600px=22 style=3D=22border:1px solid =23cccccc=3Bmargin: auto=3Bborder-s=
+pacing:0=3B=22=3E=3Ctr=3E=3Ctd style=3D=22background:=23000000=3Bpadding-le=
+ft:3=25=22=3E=3Cimg src=3D=22http://codingmantra.co.in/assets/logo/logo.png=
+=22 width=3D=22300px=22 vspace=3D10 /=3E=3C/td=3E=3C/tr=3E=3Ctr=3E=3Ctd sty=
+le=3D=22height:20px=22=3E=3C/td=3E=3C/tr=3Ethis is testing purpose=3Ctr=3E=
+=3Ctd style=3D=22height:20px=22=3E=3C/td=3E=3C/tr=3E=3Ctr=3E=3Ctd style=3D'=
+background:=23000000=3Bcolor: =23999999=3Bpadding: 2=25=3Btext-align: cente=
+r=3Bfont-size: 13px=3B'=3E=3Cp style=3D'margin-top:1px=3B'=3E=3Ca href=3D'h=
+ttp://codingmantra.co.in/' target=3D'=5Fblank' style=3D'text-decoration:non=
+e=3Bcolor: =2360d2ff=3B'=3Ewww.codingmantra.co.in=3C/a=3E=3C/p=3E=3C/td=3E=
+=3C/tr=3E=3C/table=3E=3C/body=3E=3C/html=3E
+
+--B_ALT_5f153ead652d5--</pre>

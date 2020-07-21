@@ -24,9 +24,7 @@ $(document).ready(function () {
 				$("#subscribe_blog").modal("hide");
 
 				alert(
-					"Thank You For Subscribing to our blog. We send you an Email to : " +
-						res.data[0].email +
-						" please check your email."
+					"Thank You For Subscribing to our blog. Your Login password is 123."
 				);
 			},
 			error: function (data) {

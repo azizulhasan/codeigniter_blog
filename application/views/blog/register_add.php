@@ -15,15 +15,14 @@
                             <p style="color: red;"><strong>Error!</strong> <?php echo  $err; ?><p>
                        <?php }?>
                          <?php 
-                        echo $this->session->userdata('name');
-                        echo $this->session->userdata('type');
+                       
                         ?> 
-                        <form id="needs-validation" action="<?php echo base_url("admin/register_confirm") ;?>" enctype="multipart/form-data" method="post">
+                        <form id="needs-validation" action="<?php echo base_url("blog/register_confirm") ;?>" enctype="multipart/form-data" method="post">
 
                             <div class="form-group">
                                 <label>Full Name</label>
                                 <input class="form-control input-lg" placeholder="Enter first name" value="<?php echo set_value('fullname'); ?>"  name="name" type="text" />
-                                <input type="number" value="4" name="type" hidden/>
+                                <input type="number" value="6" name="type" hidden/>
                                 <div class="invalid-feedback">This field is required.</div>
                             </div>
 
@@ -41,7 +40,7 @@
 
                             <div class="form-group">
                                 <label>Confirm Password</label>
-                                <input class="form-control input-lg" placeholder="Confirm password" value="<?php echo set_value('repassword'); ?>" name="repassword" type="repassword" />
+                                <input class="form-control input-lg" placeholder="Confirm password" value="<?php echo set_value('repassword'); ?>" name="repassword" type="password" />
                                 <div class="invalid-feedback">This field is required.</div>
                             </div>
                             <div class="form-group">
@@ -58,9 +57,9 @@
                             </div>
                             <input type="submit" value="register" class="btn btn-primary btn-block mt-2">
                             <!-- login with social media -->
-                            <a href="" class="g-signin2  btn-google btn-block" data-onsuccess="onSignIn" id="login_google" data-theme="dark" >
+                            <!-- <a href="" class="g-signin2  btn-google btn-block" data-onsuccess="onSignIn" id="login_google" data-theme="dark" >
                             <i class="fab fa-google fa-fw"></i> Login with Google
-                            </a>
+                            </a> -->
                             <div class="fb-login-button" data-size="large" data-button-type="continue_with" data-layout="default" data-auto-logout-link="false" data-use-continue-as="false" data-width=""></div>
                             <!-- login with social media -->
 
@@ -120,57 +119,57 @@
     
     
 
-	function onSignIn(googleUser) {
-		//Useful data for your client-side scripts:
-		var profile = googleUser.getBasicProfile();
+// 	function onSignIn(googleUser) {
+// 		//Useful data for your client-side scripts:
+// 		var profile = googleUser.getBasicProfile();
 
-		//window.location.assign("http://localhost/idb/1252639/codeigniter/blog/admin/index")
+// 		//window.location.assign("http://localhost/idb/1252639/codeigniter/blog/admin/index")
 
-		//The ID token you need to pass to your backend:
-		var id_token = googleUser.getAuthResponse().id_token;
+// 		//The ID token you need to pass to your backend:
+// 		var id_token = googleUser.getAuthResponse().id_token;
 
-		//Create an FormData object
-		var data = new FormData();
-		// If you want to add an extra field for the FormData
-		data.append("name", profile.getName());
-		data.append("email", profile.getEmail());
-		data.append("profileId", profile.getId());
-		data.append("picture", profile.getImageUrl());
-        data.append("type", '3');
+// 		//Create an FormData object
+// 		var data = new FormData();
+// 		// If you want to add an extra field for the FormData
+// 		data.append("name", profile.getName());
+// 		data.append("email", profile.getEmail());
+// 		data.append("profileId", profile.getId());
+// 		data.append("picture", profile.getImageUrl());
+//         data.append("type", '3');
         
-    // console.log('ID: ' + profile.getId());
-//   console.log('Full Name: ' + profile.getName());
-//   console.log('Given Name: ' + profile.getGivenName());
-//   console.log('Family Name: ' + profile.getFamilyName());
-//   console.log('Image URL: ' + profile.getImageUrl());
-//   console.log('Email: ' + profile.getEmail());
+//     // console.log('ID: ' + profile.getId());
+// //   console.log('Full Name: ' + profile.getName());
+// //   console.log('Given Name: ' + profile.getGivenName());
+// //   console.log('Family Name: ' + profile.getFamilyName());
+// //   console.log('Image URL: ' + profile.getImageUrl());
+// //   console.log('Email: ' + profile.getEmail());
 
 	
 
-		$.ajax({
-			data: data,
-			url: $("meta[name='url']").attr("content") + "admin/check",
-			type: "POST",
-			processData: false,
-			contentType: false,
-			dataType: "json",
-			success: function (res) {
-                console.log(res.status)
-				if (res.data[0].email && res.data[0].type=='3') {
-					let login = `
-          <span>${profile.getGivenName()}</span>
-          <img src="${profile.getImageUrl()}" alt="${profile.getGivenName()}" height='25' width='25'>
-         `;
-					console.log(login);
-					$("#login_nav").show();
-					$("#navbarDropdown").html(login);
-				}
-			},
-			error: function (data) {
-				console.log("Error:", data);
-			},
-		});
-    }
+// 		$.ajax({
+// 			data: data,
+// 			url: $("meta[name='url']").attr("content") + "admin/check",
+// 			type: "POST",
+// 			processData: false,
+// 			contentType: false,
+// 			dataType: "json",
+// 			success: function (res) {
+//                 console.log(res.status)
+// 				if (res.data[0].email && res.data[0].type=='3') {
+// 					let login = `
+//           <span>${profile.getGivenName()}</span>
+//           <img src="${profile.getImageUrl()}" alt="${profile.getGivenName()}" height='25' width='25'>
+//          `;
+// 					console.log(login);
+// 					$("#login_nav").show();
+// 					$("#navbarDropdown").html(login);
+// 				}
+// 			},
+// 			error: function (data) {
+// 				console.log("Error:", data);
+// 			},
+// 		});
+//     }
     
     $("#front_logout").on("click", function () {
 		var postId =

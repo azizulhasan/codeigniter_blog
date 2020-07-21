@@ -39,9 +39,9 @@
                       <input type="submit" class="btn btn-primary btn-block" value="Login">
                     </div>
                     <hr>
-                    <a href="" class="g-signin2  btn-google btn-block" data-onsuccess="onSignIn" id="login_google" data-theme="dark" >
+                    <!-- <a href="" class="g-signin2  btn-google btn-block" data-onsuccess="onSignIn" id="login_google" data-theme="dark" >
                       <i class="fab fa-google fa-fw"></i> Login with Google
-                    </a>
+                    </a> -->
                     <div class="fb-login-button" data-size="large" data-button-type="continue_with" data-layout="default" data-auto-logout-link="false" data-use-continue-as="false" data-width=""></div>
 
                   <fb:login-button 
@@ -51,13 +51,9 @@
                   </form>
 
                   
-                  <hr>
-                  <div class="text-center">
-                    <!-- <a class="font-weight-bold small" href="register.html">Create an Account!</a> -->
-                    <small class="text-muted mt-5 mb-1 d-block">Don't have an account? <a class="font-weight-bold " href="<?php echo base_url().'register';?>">Register Now!</a></small>
-                  </div>
-                  <div class="text-center">
-                  </div>
+                 
+                  
+                 
                 </div>
               </div>
             </div>
@@ -106,11 +102,11 @@
 			success: function (res) {
 				if (res.data[0].email && res.data[0].type=='1') {
 					window.location.assign(
-						"http://localhost/idb/1252639/codeigniter/codeigniter_blog/admin/index"
+						"https://blog.azizulhasan.com/admin/index"
 					);
 				} else {
 					window.location.assign(
-						"http://localhost/idb/1252639/codeigniter/codeigniter_blog/admin/login"
+						"https://blog.azizulhasan.com/admin/login"
 					);
 				}
 			},

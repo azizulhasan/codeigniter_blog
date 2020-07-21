@@ -75,7 +75,7 @@
           <div class="bg-white py-2 collapse-inner rounded">
           <h6 class="collapse-header">Role</h6>
             <a class="collapse-item" href="<?php echo base_url("admin/user_management")?>">User Manage</a>
-            <a class="collapse-item" href="<?php echo base_url("admin/position_management")?>">Position Manage</a>
+            <!-- <a class="collapse-item" href="<?php echo base_url("admin/position_management")?>">Position Manage</a> -->
           </div>
         </div>
       </li>
@@ -355,7 +355,7 @@
                   Activity Log
                 </a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item"  href="<?php echo base_url('admin/logout') ;?>">
+                <a class="dropdown-item"  href="<?php echo base_url('logout') ;?>">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                   Logout
                 </a>

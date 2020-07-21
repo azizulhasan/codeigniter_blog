@@ -22,96 +22,111 @@ https://www.roytuts.com/nested-comments-using-codeigniter-ajax/ -->
     </div>
   </header>
 
-  <!-- Main Content -->
-  <div class="container">
-  <?php if($search_results): ?>   
-    <?php foreach($search_results as $single_result):?>
-       <div class="row">
-            <div id="blog_list" class="col-lg-8 col-md-10 mx-auto">
-                  <a class="single_blog" id="<?php echo $single_result->id; ?>" href="<?php echo base_url().'post/'.$single_result->id;?>">
-                <h2 class="post-title">
-                  <?php echo $single_result->title; ?>
-                </h2>
+     <!-- Main Content -->
+     <div class="container">
+    <div class="row ">
+      <?php if($search_results):
+      
+        
+        ?>  
+        <?php foreach($search_results as $blog):?>
+          <div class="col-md-10 border border-dark pl-0">
+            <div class="row">
+              <div class="col-lg-12">
+                <a class="single_blog" id="<?php echo $blog->id; ?>" href="<?php echo base_url().'post/'.$blog->id;?>">
+                  <h2 class="post-title">
+                    <?php echo $blog->title; ?>
+                  </h2>
               </a>
               <p class="post-meta">Posted by
-
-              <?php 
-              if($single_result->created_by_id== 1){
-                $postedBy = 'Admin';
-              }else{
-                $postedBy = "Editor";
-              }
-              ?>
-                <a href="<?php echo base_url().'post/'.$single_result->created_by_id;?>"><?php echo $postedBy; ?></a>
-                on <?php echo $single_result->created_at; ?></p>
+                <?php 
+                if($blog->created_by_id== 1){
+                  $postedBy = 'Admin';
+                }else{
+                  $postedBy = "Editor";
+                }
+                ?>
+                  <a href="<?php echo base_url().'post/'.$blog->created_by_id;?>"><?php echo $postedBy; ?></a>
+                  on <?php echo $blog->created_at; ?>
+              </p>
+              </div>
             </div>
-        </div>
-        
-        <div class='row'>
-            <div id="blog_list" class="col-lg-8 col-md-10 mx-auto">
-                <div class="row">
+
+
+              <div class="row">
                   <div class="col-lg-4 col-md-6">
-
-
                   <?php 
-                  // if function base_url() is not being echo then this condition will always became false.
-                  if(strval(file_exists(base_url().'assets/img/'.$single_result->picture))){
-                        
-                        $image = base_url().'assets/img/placeholder.jpg';
+
+                
+
+                 $files = scandir('assets/img/');
+                 foreach ($files as $key => $value) {
+                  if(file_exists('assets/img/'.$blog->picture) ){
+                      $image = base_url().'assets/img/'.$blog->picture;
+                    break;
                   }else{
-                    
-                    $image = base_url().'assets/img/'.$single_result->picture;
+                    $image = base_url().'assets/img/placeholder.jpg';
+                  break;
                   }
-                  
+                }
                   ?>
+                  
+                  
                     <img width='100%' height="170" style="border:1px solid blue;" src="<?php echo  $image?>" alt="">
                   </div>
-                  <div class="col-lg-8 col-md-6 ">
-                  
+              <div class="col-lg-8 col-md-6 ">
                   <?php 
-                  if(strval(file_exists(base_url()."assets/img/description/".$single_result->id.".txt"))){
-                        $url = base_url()."assets/img/description/placeholder.txt";
-                  }else{
-                    $url = base_url()."assets/img/description/".$single_result->id.".txt";
-                  }
 
-                    
+                    $url = base_url()."assets/img/description/".$blog->id.".txt";
+
                     $description =  file_get_contents($url);
-                    if($description!=""){
-                      $link =  base_url().'post/'.$single_result->id.'/'.$single_result->title;
+                    
+                    if($description){
+                       $link =  base_url().'post/'.$blog->id.'/'.$blog->id;
                     echo shorten_string(
                       $description
-                      
+                      , '30' ,   $link, ' Read More');
+                    }else{
+                      $url = base_url()."assets/img/description/placeholder.txt";
+                      $description =  file_get_contents($url);
+                       $link =  base_url().'post/'.$blog->id.'/'.$blog->id;
+                    echo shorten_string(
+                      $description
                       , '25' ,   $link, ' Read More');
                     }
-                  ?>
-                  </div>
-                </div>
+
+
+                    ?>
+              </div>
             </div>
-        </div>
-       
-    
-      <?php endforeach;?>
+
+          </div>
+        <?php endforeach;?>
+        <?php endif; ?>
       
-      <?php endif; ?>
+        
+
+    </div>
+      
+
+
+
+  
       <style>
         .blog_descrip p{
           margin:0;
           line-height:1.2;
         }
       </style>
-      <p ><?php
-
-      if(count($search_results)>5){
-        echo $links; 
+      <p ><?php 
+      if(isset($links)){
+        echo $links;
       }
-      
       
       ?></p>
      
-  </div>
- 
- 
+  
+</div>
  
 
   

@@ -16,29 +16,34 @@ class LoginController extends CI_Controller {
 		echo   $this->load->view('admin/common/footer','', true);
 	}
 
-	public function loginHeader()
+	public function loginHeader($data)
 	{
-		echo   $this->load->view('admin/common/loginHeader','', true);
+		echo   $this->load->view('admin/common/loginHeader',$data, true);
 	}
 
 	public function login()
 	{
 		
 		$type = $this->session->userdata("type");
+		echo $type;
 		if($type=='1'){
-			echo $this->session->userdata("type").'true';
-		$this->loginHeader();
-		$data['title'] = "Admin Login";
-		// echo  $this->load->view('admin/index','', true);
-		redirect( base_url("admin/index"), "refresh" );
-		$this->footer();
+			$data['title'] = "Admin Login";
+			$this->loginHeader($data);
+			redirect( base_url("admin/index"), "refresh" );
+			$this->footer();
+		}else if($this->uri->segment(1)=="blog"){
+			$data['title'] = "User Login";
+			$this->loginHeader($data);
+			echo  $this->load->view('blog/login','', true);
+			$this->footer();
 		}else{
-		$this->loginHeader();
-		$data['title'] = "Admin Login";
-		echo  $this->load->view('admin/login','', true);
-		$this->footer();
-		echo $this->session->userdata("type").'false';
+			$data['title'] = "Admin Login";
+			$this->loginHeader($data);
+			echo  $this->load->view('admin/login','', true);
+			$this->footer();
 		}
+
+		
 	}
 
 	
@@ -87,12 +92,15 @@ class LoginController extends CI_Controller {
 					echo json_encode(array("status" => "2,priouslogin",  'data' => $results));
 				}
 				else{
-					redirect( base_url("admin/login"), "refresh" );
+					if($this->uri->segment(1)=='admin'){
+						redirect( base_url("admin/login"), "refresh" );
+					}else{
+						redirect( base_url("blog/login"), "refresh" );
+					}
 				}
 			}
 
 		}else{
-			
 			$manual_data =[
 				'email' => $this->input->post('email'),
 				'password' => $this->input->post('password'),
@@ -108,10 +116,20 @@ class LoginController extends CI_Controller {
 					];
 					$this->session->set_userdata($data);
 					redirect(base_url( "admin/index" ), "refresh");
+
+					if($result->id==1){
+						redirect( base_url("admin/index"), "refresh" );
+					}else{
+						redirect( base_url("/"), "refresh" );
+					}
 				}
 			}
 			else{
-				redirect( base_url("admin/login"), "refresh" );
+				if($this->uri->segment(1)=='admin'){
+					redirect( base_url("admin/login"), "refresh" );
+				}else{
+					redirect( base_url("blog/login"), "refresh" );
+				}
 			}
 		}
 	}
@@ -121,77 +139,21 @@ class LoginController extends CI_Controller {
 	// $users=$this->db->query("select u.id,u.username,r.name role from users u, roles r where r.id=u.role_id");
 
 
-	public function register_confirm(){
-		// $this->form_validation->set_rules('full_name', 'Full Name', 'required');
-		// $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
-		// $this->form_validation->set_rules('password', 'Password', 'required|min_length[6]|max_length[12]');
-		// $this->form_validation->set_rules('re_password', 'Retype Password', 'required|matches[password]');
-
-		// if($this->form_validation->run() == FALSE){
-		// 	$data['title'] = "Register";    
-		// 	$data['register_content'] = $this->load->view("admin/register", $data, true);     
-		// 	$this->load->view("page/mofiz", $data);
+	public function logout()
+	{
+		// if($this->uri->segment(1)=='post'){
+		// 	$this->session->unset_userdata(['id','name','type']);
+		// 	echo json_encode(array('status'=>1));
+		// 	// return redirect( base_url("post/".$this->uri->segment(2)), "refresh" );
+		// }elseif($this->session->userdata('id')=='4'||$this->session->userdata('id')=='3'){
+		// 	$this->session->unset_userdata(['id','name', 'type']);
+		// 	return redirect( base_url("/"), "refresh" );
 		// }
 		// else{
-         
-
-			$data = [
-				"name" => $this->input->post("full_name"),
-				"email" => $this->input->post("email"),
-				"password" => md5($this->input->post("password")),
-				"re_password" => md5($this->input->post("re_password")),            
-				"picture" => fileExtension('pic')
-			];
-			
-			if($this->bmodel->InsertData("users", $data)){
-            $id = $this->bmodel->Id;
-				// if($data['picture']){
-				// 	$this->load->model("custom_model");
-				// 	$this->custom_model->UploadImg(
-				// 		"assets/img/users",
-				// 		"{$id}.{$data['picture']}",
-				// 		"pic"
-				// 	);            
-
-				// 	$this->custom_model->ResizeImg(
-				// 		"assets/img/users/{$id}.{$data['picture']}",
-				// 		"assets/img/users/{$id}-md.{$data['picture']}",
-				// 		"800",
-				// 		"450"
-				// 	);
-
-				// 	list($width, $height) = getimagesize("assets/img/users/{$id}.{$data['picture']}");
-				// 	$x_axis = floor($width - 200/2);
-				// 	$y_axis = floor($height - 100/2);
-
-				// 	$this->custom_model->CropImg(
-				// 		"assets/img/users/{$id}.{$data['picture']}",
-				// 		"./assets/img/users/{$id}-cr.{$data['picture']}",
-				// 		"200",
-				// 		"100",
-				// 		$x_axis,
-				// 		$y_axis
-				// 	);
-
-				// 	$this->custom_model->watermarkImg(
-				// 		"assets/img/users/{$id}.{$data['picture']}",
-				// 		"assets/img/users/{$id}-w.{$data['picture']}",
-				// 		"assets/img/users/logo.png"					
-				// 	);
-            	// }
-
-				$this->session->set_flashdata('success', 'Save Successfully');
-				redirect(base_url("admin/register_add"), "refresh");
-				//$this->session->set_userdata('success', 'Save Successfully'); //keep data long time
-				//$this->session->userdata('success'); //read data
-				//$this->session->unset_userdata('success', 'Save Successfully'); //delete data 
-			}		
-			else{
-				$data['msg']= $this->session->set_flashdata('success', 'Save Successfully');
-				  
-					
-				$this->load->view("admin/regiser_add", $data);	
-			}			
+			$this->session->sess_destroy();
+			return redirect( base_url("/"), "refresh" );
 		// }
+		
 	}
+	
 }

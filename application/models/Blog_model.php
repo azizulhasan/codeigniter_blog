@@ -33,7 +33,7 @@ class Blog_model extends CI_Model
          return $this->db->affected_rows();
  
     }
-        public function view($select, $table, $where = null, $order =null, $limit = null, $join = null, $group_by = null){
+        public function view($select, $table, $where = null, $order =null,  $limit = null, $join = null, $keyword=null, $group_by = null){
 
             $this->db->select($select);
             $this->db->from($table);
@@ -43,11 +43,13 @@ class Blog_model extends CI_Model
                 }
             }
             if($where){
-               
                 $this->db->where($where);
             }
             if($order){
                 $this->db->order_by($order);
+            }
+            if($keyword){
+                $this->db->like('title',$keyword);
             }
             if($group_by){
 
